@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:abbon_test/controllers/home_controller.dart';
-
 import '../../config/app_import.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -43,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                   width: size.width * 0.5,
                   text: LocaleKeys.telephone,
                   ontap: () {
-                    controller.tel();
+                    controller.openTel();
                   },
                 ),
                 const SizedBox(height: 20),
@@ -52,6 +51,14 @@ class HomeScreen extends StatelessWidget {
                   text: LocaleKeys.email,
                   ontap: () {
                     controller.launchEmail();
+                  },
+                ),
+                const SizedBox(height: 20),
+                CustomButton(
+                  width: size.width * 0.5,
+                  text: "Line",
+                  ontap: () {
+                    controller.openLine();
                   },
                 ),
               ],

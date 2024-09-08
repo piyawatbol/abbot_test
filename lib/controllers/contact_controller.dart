@@ -87,6 +87,14 @@ class ContractController extends GetxController {
       age: int.tryParse(age.text),
     );
 
+    if (contactList.length >= 100) {
+      Get.snackbar(
+        'Error',
+        'Unable to add more contract name. You can only add 100 contract name',
+        snackPosition: SnackPosition.TOP,
+      );
+    }
+
     contactList.insert(0, newContact);
     allContacts.insert(0, newContact);
 

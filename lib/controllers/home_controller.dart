@@ -10,6 +10,16 @@ class HomeController extends GetxController {
   File? imageFile;
   XFile? pickedFile;
 
+  pickImage(ImageSource image) async {
+    final ImagePicker picker = ImagePicker();
+    pickedFile = await picker.pickImage(source: image);
+    if (pickedFile != null) {
+      imageFile = File(pickedFile!.path);
+      update();
+      Get.back();
+    }
+  }
+
   getCurrentLocation() async {
     LocationPermission permission;
 
@@ -52,12 +62,12 @@ class HomeController extends GetxController {
     }
   }
 
-  tel() {
+  openTel() {
     final Uri url = Uri(scheme: "tel", path: "099999999");
     launchUrl(url);
   }
 
-  Future<void> launchEmail() async {
+  Future launchEmail() async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: 'piyawatbol@gmail.com',
@@ -75,25 +85,13 @@ class HomeController extends GetxController {
   }
 
   Future<void> openLine() async {
-    final Uri lineUri = Uri(
-      scheme: 'line',
-      path: 'msg/text/Hello%20from%20Flutter', // Replace with your message
-    );
-
-    if (await canLaunchUrl(Uri.parse(lineUri.toString()))) {
-      await launchUrl(Uri.parse(lineUri.toString()));
+    const String url = 'https://line.me/ti/p/~pywsdd_050943';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(
+        Uri.parse(url),
+      );
     } else {
-      throw 'Could not open Line app';
-    }
-  }
-
-  pickImage(ImageSource image) async {
-    final ImagePicker picker = ImagePicker();
-    pickedFile = await picker.pickImage(source: image);
-    if (pickedFile != null) {
-      imageFile = File(pickedFile!.path);
-      update();
-      Get.back();
+      throw 'Could not launch Safari';
     }
   }
 
